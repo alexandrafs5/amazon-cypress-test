@@ -4,12 +4,12 @@ class AmazonPage {
     }
 
     searchProduct(productName) {
-        cy.get('#twotabsearchtextbox', { timeout: 10000 })
-            .type(`${productName}{enter}`);
+        cy.get('#twotabsearchtextbox').type(`${productName}{enter}`);
     }
 
     selectFirstProduct() {
-        cy.get('.s-main-slot .s-result-item', { timeout: 10000 })
+        cy.get('.s-main-slot .s-result-item', { timeout: 15000 })
+            .filter(':has(h2 a)')
             .first()
             .find('h2 a')
             .first()
@@ -17,13 +17,11 @@ class AmazonPage {
     }
 
     addToCart() {
-        cy.get('[id^="add-to-cart"]', { timeout: 10000 })
-            .should('be.visible')
-            .click();
+        cy.get('#add-to-cart-button', { timeout: 10000 }).click();
     }
 
     verifyAdded() {
-        cy.get('h1, #huc-v2-order-row-confirm-text', { timeout: 10000 })
+        cy.get('#huc-v2-order-row-confirm-text', { timeout: 10000 })
             .should('contain.text', 'added to Cart');
     }
 }
