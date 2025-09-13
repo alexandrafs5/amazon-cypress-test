@@ -4,20 +4,28 @@ class AmazonPage {
     }
 
     searchProduct(productName) {
-        cy.get('#twotabsearchtextbox').type(`${productName}{enter}`);
+        cy.get('#twotabsearchtextbox', { timeout: 10000 })
+            .should('be.visible')
+            .type(`${productName}{enter}`);
     }
 
     selectFirstProduct() {
-        cy.get('.s-main-slot .s-result-item', { timeout: 15000 })
-            .filter(':has(h2 a)')
-            .first()
-            .find('h2 a')
-            .first()
-            .click();
+        cy.get('.s-main-slot .s-result-item', { timeout: 20000 })
+            .should('be.visible')
+            .then(($items) => {
+                const validItems = $items.filter((index, el) => el.querySelector('h2 a'));
+                if (validItems.length > 0) {
+                    cy.wrap(validItems[0]).find('h2 a').first().click();
+                } else {
+                    throw new Error('No product found with h2 a');
+                }
+            });
     }
 
     addToCart() {
-        cy.get('#add-to-cart-button', { timeout: 10000 }).click();
+        cy.get('#add-to-cart-button', { timeout: 10000 })
+            .should('be.visible')
+            .click();
     }
 
     verifyAdded() {
