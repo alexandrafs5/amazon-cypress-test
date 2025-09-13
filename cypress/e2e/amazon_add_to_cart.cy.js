@@ -5,7 +5,7 @@ describe('Amazon Add to Cart Test', () => {
 
   it('adds a product to cart successfully', () => {
     amazon.visit();
-    amazon.searchProduct('laptop');  // o cualquier producto de prueba
+    amazon.searchProduct('laptop');
     amazon.selectFirstProduct();
     amazon.addToCart();
     amazon.verifyAdded();
