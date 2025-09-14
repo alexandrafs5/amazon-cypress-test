@@ -10,8 +10,7 @@ class AmazonPage {
     }
 
     selectFirstProduct() {
-        cy.get('.s-main-slot .s-result-item', { timeout: 20000 })
-            .filter(':has(h2 a)')
+        cy.get('.s-main-slot .s-result-item:not([data-component-type="s-ad"])', { timeout: 20000 })
             .first()
             .find('h2 a')
             .first()
