@@ -5,5 +5,6 @@ module.exports = defineConfig({
     baseUrl: "https://www.amazon.com",
     specPattern: "cypress/e2e/**/*.cy.js",
     supportFile: "cypress/support/e2e.js",
+    defaultCommandTimeout: 20000
   },
 });
