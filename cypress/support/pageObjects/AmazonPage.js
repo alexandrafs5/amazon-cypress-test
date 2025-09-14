@@ -10,10 +10,9 @@ class AmazonPage {
     }
 
     selectFirstProduct() {
-        cy.get('.s-main-slot .s-result-item:not([data-component-type="s-ad"])', { timeout: 20000 })
+        cy.get('[data-component-type="s-search-result"] h3 a, .s-result-item h3 a, .s-result-item h2 a', { timeout: 20000 })
             .first()
-            .find('h2 a')
-            .first()
+            .should('be.visible')
             .click();
     }
 
